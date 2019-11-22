@@ -1,0 +1,3 @@
+[[paths]]
+    reference = "messages/en-US/strings.json"
+    l10n = "messages/{locale}/strings.json"
