@@ -10,9 +10,7 @@ import ruMessages from './messages/ru-RU/strings.properties';
 
 function returnMessagesFromPropertiesFile(rawPropertiesString) {
   const translationsContent = rawPropertiesString.split('\n');
-  console.log(translationsContent);
   const parsedTranslations = convertPropsToFlatJson(translationsContent);
-  console.log(parsedTranslations);
 
   return parsedTranslations;
 }
