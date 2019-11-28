@@ -1,59 +1,77 @@
-import enMessages from './messages/en-US/strings.json';
-import viMessages from './messages/vi/strings.json';
-import jaMessages from './messages/ja-JP/strings.json';
-import koMessages from './messages/ko-KR/strings.json';
-import trMessages from './messages/tr-TR/strings.json';
-import thMessages from './messages/th-TH/strings.json';
-import ruMessages from './messages/ru-RU/strings.json';
 
-export default [
-  {
-    name: 'English',
-    locale: 'en-US',
-    contentfulLocale: 'en-US',
-    defaultLocale: true,
-    messages: enMessages,
-  },
-  {
-    name: 'Vietnamese',
-    locale: 'vi',
-    contentfulLocale: 'vi',
+    import fs from "fs";
+    import path from "path";
+    import { convertPropsToFlatJson } from "propson";
+    // This is imported using Fusebox's raw plugin
+    import enMessages from './messages/en-US/strings.properties'
+import viMessages from './messages/vi/strings.properties'
+import jaMessages from './messages/ja-JP/strings.properties'
+import koMessages from './messages/ko-KR/strings.properties'
+import trMessages from './messages/tr-TR/strings.properties'
+import thMessages from './messages/th-TH/strings.properties'
+import ruMessages from './messages/ru-RU/strings.properties'
 
-    messages: viMessages,
-  },
-  {
-    name: 'Japanese',
-    locale: 'ja-JP',
-    contentfulLocale: 'ja-JP',
 
-    messages: jaMessages,
-  },
-  {
-    name: 'Korean',
-    locale: 'ko-KR',
-    contentfulLocale: 'ko-KR',
+    function returnMessagesFromPropertiesFile(rawPropertiesString) {
+      const translationsContent = rawPropertiesString.split("
+");
+      console.log(translationsContent);
+      const parsedTranslations = convertPropsToFlatJson(translationsContent);
+      console.log(parsedTranslations);
 
-    messages: koMessages,
-  },
-  {
-    name: 'Turkish',
-    locale: 'tr-TR',
-    contentfulLocale: 'tr-TR',
+      return parsedTranslations;
+    }
 
-    messages: trMessages,
-  },
-  {
-    name: 'Thailand',
-    locale: 'th-TH',
-    contentfulLocale: 'th-TH',
-
-    messages: thMessages,
-  },
-  {
-    name: 'Russian',
-    locale: 'ru-RU',
-    contentfulLocale: 'ru-RU',
-
-    messages: ruMessages,
-  },
-];
+    export default [
+      {
+        name: 'English',
+        locale: 'en-US',
+        contentfulLocale: 'en-US',
+        defaultLocale: true, 
+        messages: returnMessagesFromPropertiesFile(enMessages),
+      },
+{
+        name: 'Vietnamese',
+        locale: 'vi',
+        contentfulLocale: 'vi',
+        
+        messages: returnMessagesFromPropertiesFile(viMessages),
+      },
+{
+        name: 'Japanese',
+        locale: 'ja-JP',
+        contentfulLocale: 'ja-JP',
+        
+        messages: returnMessagesFromPropertiesFile(jaMessages),
+      },
+{
+        name: 'Korean',
+        locale: 'ko-KR',
+        contentfulLocale: 'ko-KR',
+        
+        messages: returnMessagesFromPropertiesFile(koMessages),
+      },
+{
+        name: 'Turkish',
+        locale: 'tr-TR',
+        contentfulLocale: 'tr-TR',
+        
+        messages: returnMessagesFromPropertiesFile(trMessages),
+      },
+{
+        name: 'Thailand',
+        locale: 'th-TH',
+        contentfulLocale: 'th-TH',
+        
+        messages: returnMessagesFromPropertiesFile(thMessages),
+      },
+{
+        name: 'Russian',
+        locale: 'ru-RU',
+        contentfulLocale: 'ru-RU',
+        
+        messages: returnMessagesFromPropertiesFile(ruMessages),
+      }
+    ]
+    
+  
