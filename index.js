@@ -1,16 +1,17 @@
 /* eslint-disable import/no-unresolved */
-import { convertPropsToFlatJson } from 'propson';
+import { convertPropsToFlatJson } from "propson";
 // This is imported using Fusebox's raw plugin
-import enMessages from './messages/en-US/strings.properties';
-import viMessages from './messages/vi/strings.properties';
-import jaMessages from './messages/ja/strings.properties';
-import koMessages from './messages/ko/strings.properties';
-import trMessages from './messages/tr/strings.properties';
-import thMessages from './messages/th/strings.properties';
-import ruMessages from './messages/ru-RU/strings.properties';
+import enMessages from "./messages/en-US/strings.properties";
+import viMessages from "./messages/vi/strings.properties";
+import jaMessages from "./messages/ja/strings.properties";
+import koMessages from "./messages/ko/strings.properties";
+import trMessages from "./messages/tr/strings.properties";
+import thMessages from "./messages/th/strings.properties";
+import ruMessages from "./messages/ru-RU/strings.properties";
 
 function returnMessagesFromPropertiesFile(rawPropertiesString) {
-  const translationsContent = rawPropertiesString.split('\n');
+  console.log("rawPropertiesString", rawPropertiesString);
+  const translationsContent = rawPropertiesString.split("\n");
   const parsedTranslations = convertPropsToFlatJson(translationsContent);
 
   return parsedTranslations;
@@ -18,52 +19,52 @@ function returnMessagesFromPropertiesFile(rawPropertiesString) {
 
 export default [
   {
-    name: 'English',
-    locale: 'en-US',
-    contentfulLocale: 'en-US',
+    name: "English",
+    locale: "en-US",
+    contentfulLocale: "en-US",
     defaultLocale: true,
-    messages: returnMessagesFromPropertiesFile(enMessages),
+    messages: returnMessagesFromPropertiesFile(enMessages)
   },
   {
-    name: 'Vietnamese',
-    locale: 'vi',
-    contentfulLocale: 'vi',
+    name: "Vietnamese",
+    locale: "vi",
+    contentfulLocale: "vi",
 
-    messages: returnMessagesFromPropertiesFile(viMessages),
+    messages: returnMessagesFromPropertiesFile(viMessages)
   },
   {
-    name: 'Japanese',
-    locale: 'ja',
-    contentfulLocale: 'ja-JP',
+    name: "Japanese",
+    locale: "ja",
+    contentfulLocale: "ja-JP",
 
-    messages: returnMessagesFromPropertiesFile(jaMessages),
+    messages: returnMessagesFromPropertiesFile(jaMessages)
   },
   {
-    name: 'Korean',
-    locale: 'ko',
-    contentfulLocale: 'ko-KR',
+    name: "Korean",
+    locale: "ko",
+    contentfulLocale: "ko-KR",
 
-    messages: returnMessagesFromPropertiesFile(koMessages),
+    messages: returnMessagesFromPropertiesFile(koMessages)
   },
   {
-    name: 'Turkish',
-    locale: 'tr',
-    contentfulLocale: 'tr-TR',
+    name: "Turkish",
+    locale: "tr",
+    contentfulLocale: "tr-TR",
 
-    messages: returnMessagesFromPropertiesFile(trMessages),
+    messages: returnMessagesFromPropertiesFile(trMessages)
   },
   {
-    name: 'Thailand',
-    locale: 'th',
-    contentfulLocale: 'th-TH',
+    name: "Thailand",
+    locale: "th",
+    contentfulLocale: "th-TH",
 
-    messages: returnMessagesFromPropertiesFile(thMessages),
+    messages: returnMessagesFromPropertiesFile(thMessages)
   },
   {
-    name: 'Russian',
-    locale: 'ru-RU',
-    contentfulLocale: 'ru',
+    name: "Russian",
+    locale: "ru-RU",
+    contentfulLocale: "ru",
 
-    messages: returnMessagesFromPropertiesFile(ruMessages),
-  },
+    messages: returnMessagesFromPropertiesFile(ruMessages)
+  }
 ];
