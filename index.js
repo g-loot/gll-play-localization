@@ -1,17 +1,17 @@
-import fs from "fs";
-import path from "path";
-import { convertPropsToFlatJson } from "propson";
+import fs from 'fs';
+import path from 'path';
+import { convertPropsToFlatJson } from 'propson';
 // This is imported using Fusebox's raw plugin
-import enMessages from "./messages/en-US/strings.properties";
-import viMessages from "./messages/vi/strings.properties";
-import jaMessages from "./messages/ja-JP/strings.properties";
-import koMessages from "./messages/ko-KR/strings.properties";
-import trMessages from "./messages/tr-TR/strings.properties";
-import thMessages from "./messages/th-TH/strings.properties";
-import ruMessages from "./messages/ru-RU/strings.properties";
+import enMessages from './messages/en-US/strings.properties';
+import viMessages from './messages/vi/strings.properties';
+import jaMessages from './messages/ja-JP/strings.properties';
+import koMessages from './messages/ko-KR/strings.properties';
+import trMessages from './messages/tr-TR/strings.properties';
+import thMessages from './messages/th-TH/strings.properties';
+import ruMessages from './messages/ru-RU/strings.properties';
 
 function returnMessagesFromPropertiesFile(rawPropertiesString) {
-  const translationsContent = rawPropertiesString.split("\n");
+  const translationsContent = rawPropertiesString.split('\n');
   console.log(translationsContent);
   const parsedTranslations = convertPropsToFlatJson(translationsContent);
   console.log(parsedTranslations);
@@ -21,52 +21,52 @@ function returnMessagesFromPropertiesFile(rawPropertiesString) {
 
 export default [
   {
-    name: "English",
-    locale: "en-US",
-    contentfulLocale: "en-US",
+    name: 'English',
+    locale: 'en-US',
+    contentfulLocale: 'en-US',
     defaultLocale: true,
-    messages: returnMessagesFromPropertiesFile(enMessages)
+    messages: returnMessagesFromPropertiesFile(enMessages),
   },
   {
-    name: "Vietnamese",
-    locale: "vi",
-    contentfulLocale: "vi",
+    name: 'Vietnamese',
+    locale: 'vi',
+    contentfulLocale: 'vi',
 
-    messages: returnMessagesFromPropertiesFile(viMessages)
+    messages: returnMessagesFromPropertiesFile(viMessages),
   },
   {
-    name: "Japanese",
-    locale: "ja-JP",
-    contentfulLocale: "ja-JP",
+    name: 'Japanese',
+    locale: 'ja-JP',
+    contentfulLocale: 'ja-JP',
 
-    messages: returnMessagesFromPropertiesFile(jaMessages)
+    messages: returnMessagesFromPropertiesFile(jaMessages),
   },
   {
-    name: "Korean",
-    locale: "ko-KR",
-    contentfulLocale: "ko-KR",
+    name: 'Korean',
+    locale: 'ko-KR',
+    contentfulLocale: 'ko-KR',
 
-    messages: returnMessagesFromPropertiesFile(koMessages)
+    messages: returnMessagesFromPropertiesFile(koMessages),
   },
   {
-    name: "Turkish",
-    locale: "tr-TR",
-    contentfulLocale: "tr-TR",
+    name: 'Turkish',
+    locale: 'tr-TR',
+    contentfulLocale: 'tr-TR',
 
-    messages: returnMessagesFromPropertiesFile(trMessages)
+    messages: returnMessagesFromPropertiesFile(trMessages),
   },
   {
-    name: "Thailand",
-    locale: "th-TH",
-    contentfulLocale: "th-TH",
+    name: 'Thailand',
+    locale: 'th-TH',
+    contentfulLocale: 'th-TH',
 
-    messages: returnMessagesFromPropertiesFile(thMessages)
+    messages: returnMessagesFromPropertiesFile(thMessages),
   },
   {
-    name: "Russian",
-    locale: "ru-RU",
-    contentfulLocale: "ru-RU",
+    name: 'Russian',
+    locale: 'ru-RU',
+    contentfulLocale: 'ru-RU',
 
-    messages: returnMessagesFromPropertiesFile(ruMessages)
-  }
+    messages: returnMessagesFromPropertiesFile(ruMessages),
+  },
 ];
