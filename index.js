@@ -1,5 +1,3 @@
-import fs from 'fs';
-import path from 'path';
 import { convertPropsToFlatJson } from 'propson';
 // This is imported using Fusebox's raw plugin
 import enMessages from './messages/en-US/strings.properties';
