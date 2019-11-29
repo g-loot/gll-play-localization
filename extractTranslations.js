@@ -51,11 +51,14 @@ function main() {
     const newLangFile = {};
     Object.keys(currentLangFile).forEach(key => {
       const currentTranslation = currentLangFile[key];
-      newLangFile[key] = currentTranslation
-        ? currentTranslation
-        : extractedTranslations[key]
-        ? extractedTranslations[key]
-        : "";
+      if (currentTranslation || extractedTranslations[key]) {
+        if (currentTranslation) {
+          newLangFile[key] = currentTranslation;
+        }
+        if (extractedTranslations[key]) {
+          newLangFile[key] = extractedTranslations[key];
+        }
+      }
     });
     const propertiesContent = Object.keys(newLangFile)
       .map(id => `${id}=${newLangFile[id] ? newLangFile[id] : ""}`)
