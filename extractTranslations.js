@@ -1,15 +1,16 @@
-const fs = require("fs");
-const { convertPropsToFlatJson } = require("propson");
+const fs = require('fs');
+const { convertPropsToFlatJson } = require('propson');
 
-const englishLang = getlangFileAsJson("en-US");
-const rawTranslations = require("./rawTranslations.json");
+const englishLang = getlangFileAsJson('en-US');
+const rawTranslations = require('./rawTranslations.json');
+
 const supportedLocales = {
-  Vietnam: { locale: "vi", messages: {} },
-  Thailand: { locale: "th", messages: {} },
-  Japan: { locale: "ja", messages: {} },
-  Korean: { locale: "ko", messages: {} },
-  Turkish: { locale: "tr", messages: {} },
-  Russia: { locale: "ru", messages: {} }
+  Vietnam: { locale: 'vi', messages: {} },
+  Thailand: { locale: 'th', messages: {} },
+  Japan: { locale: 'ja', messages: {} },
+  Korean: { locale: 'ko', messages: {} },
+  Turkish: { locale: 'tr', messages: {} },
+  Russia: { locale: 'ru', messages: {} },
 };
 const notFoundList = [];
 const foundList = [];
@@ -19,7 +20,7 @@ function main() {
   const modifiedRawTranslations = rawTranslations.map(block => {
     const id = Object.keys(englishLang).find(id => {
       const taggedMessage = englishLang[id];
-      const nonTaggedMessage = block["English text"];
+      const nonTaggedMessage = block['English text'];
       // if (
       //   taggedMessage == "OK" &&
       //   taggedMessage.toLowerCase() === nonTaggedMessage.toLowerCase()
@@ -29,7 +30,7 @@ function main() {
       // }
       return taggedMessage.toLowerCase() === nonTaggedMessage.toLowerCase();
     });
-    const newBlock = { ...block, id: id ? id : block.id };
+    const newBlock = { ...block, id: id || block.id };
     if (id) {
       foundList.push(newBlock);
     } else {
@@ -61,28 +62,28 @@ function main() {
       }
     });
     const propertiesContent = Object.keys(newLangFile)
-      .map(id => `${id}=${newLangFile[id] ? newLangFile[id] : ""}`)
-      .join("\n");
+      .map(id => `${id}=${newLangFile[id] ? newLangFile[id] : ''}`)
+      .join('\n');
     fs.writeFileSync(
       `messages/${localeCode}/strings.properties`,
       propertiesContent
     );
   });
-  console.log("found: ", foundList.length);
-  console.log("notFound: ", notFoundList.length);
+  console.log('found: ', foundList.length);
+  console.log('notFound: ', notFoundList.length);
   // console.log("notFoundList: ", notFoundList);
 }
 
 function getlangFileAsJson(locale) {
   function returnMessagesFromPropertiesFile(rawPropertiesString) {
-    const translationsContent = rawPropertiesString.split("\n");
+    const translationsContent = rawPropertiesString.split('\n');
     const parsedTranslations = convertPropsToFlatJson(translationsContent);
 
     return parsedTranslations;
   }
   const englishPropertiesRaw = fs.readFileSync(
     `./messages/${locale}/strings.properties`,
-    { encoding: "utf-8" }
+    { encoding: 'utf-8' }
   );
   return returnMessagesFromPropertiesFile(englishPropertiesRaw);
 }
