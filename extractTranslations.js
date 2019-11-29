@@ -45,19 +45,29 @@ function main() {
   });
 
   Object.keys(supportedLocales).forEach(locale => {
-    const units = supportedLocales[locale].messages;
-    const propertiesContent = Object.keys(units)
-      .map(id => `${id}=${units[id] ? units[id] : ""}`)
+    const localeCode = supportedLocales[locale].locale;
+    const extractedTranslations = supportedLocales[locale].messages;
+    const currentLangFile = getlangFileAsJson(localeCode);
+    const newLangFile = {};
+    Object.keys(currentLangFile).forEach(key => {
+      const currentTranslation = currentLangFile[key];
+      newLangFile[key] = currentTranslation
+        ? currentTranslation
+        : extractedTranslations[key]
+        ? extractedTranslations[key]
+        : "";
+    });
+    const propertiesContent = Object.keys(newLangFile)
+      .map(id => `${id}=${newLangFile[id] ? newLangFile[id] : ""}`)
       .join("\n");
-
-    // fs.writeFileSync(
-    //   `messages/${supportedLocales[locale].locale}/strings.properties`,
-    //   propertiesContent
-    // );
+    fs.writeFileSync(
+      `messages/${localeCode}/strings.properties`,
+      propertiesContent
+    );
   });
   console.log("found: ", foundList.length);
   console.log("notFound: ", notFoundList.length);
-  console.log("notFoundList: ", notFoundList);
+  // console.log("notFoundList: ", notFoundList);
 }
 
 function getlangFileAsJson(locale) {
