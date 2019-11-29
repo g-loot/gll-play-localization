@@ -1,60 +1,77 @@
 const fs = require("fs");
 const { convertPropsToFlatJson } = require("propson");
-function returnMessagesFromPropertiesFile(rawPropertiesString) {
-  const translationsContent = rawPropertiesString.split("\n");
-  const parsedTranslations = convertPropsToFlatJson(translationsContent);
 
-  return parsedTranslations;
-}
-
-const englishPropertiesRaw = fs.readFileSync(
-  "./messages/en-US/strings.properties",
-  { encoding: "utf-8" }
-);
-
-const englishLang = returnMessagesFromPropertiesFile(englishPropertiesRaw);
+const englishLang = getlangFileAsJson("en-US");
 const rawTranslations = require("./rawTranslations.json");
-const supportedLocales = [
-  {
-    name: "English",
-    codeName: "en",
-    locale: "en-US",
-    defaultLocale: true
-  },
-  {
-    name: "Vietnamese",
-    codeName: "vi",
-    locale: "vi"
-  },
-  {
-    name: "Japanese",
-    codeName: "ja",
-    locale: "ja"
-  },
+const supportedLocales = {
+  Vietnam: { locale: "vi", messages: {} },
+  Thailand: { locale: "th", messages: {} },
+  Japan: { locale: "ja", messages: {} },
+  Korean: { locale: "ko", messages: {} },
+  Turkish: { locale: "tr", messages: {} },
+  Russia: { locale: "ru", messages: {} }
+};
+const notFoundList = [];
+const foundList = [];
+function main() {
+  // console.log(rawTranslations);
+  // console.log(englishLang);
+  const modifiedRawTranslations = rawTranslations.map(block => {
+    const id = Object.keys(englishLang).find(id => {
+      const taggedMessage = englishLang[id];
+      const nonTaggedMessage = block["English text"];
+      // if (
+      //   taggedMessage == "OK" &&
+      //   taggedMessage.toLowerCase() === nonTaggedMessage.toLowerCase()
+      // ) {
+      //   console.warn(id);
+      //   console.log(nonTaggedMessage);
+      // }
+      return taggedMessage.toLowerCase() === nonTaggedMessage.toLowerCase();
+    });
+    const newBlock = { ...block, id: id ? id : block.id };
+    if (id) {
+      foundList.push(newBlock);
+    } else {
+      notFoundList.push(newBlock);
+    }
+    return newBlock;
+  });
 
-  {
-    name: "Korean",
-    codeName: "ko",
-    locale: "ko"
-  },
-  {
-    name: "Turkish",
-    codeName: "tr",
-    locale: "tr"
-  },
-  {
-    name: "Thailand",
-    codeName: "th",
-    locale: "th"
-  },
-  {
-    locale: "ru",
-    codeName: "ru",
-    name: "Russian"
-  }
-];
-function generateTranslationProperties() {
-  console.log(rawTranslations);
-  console.log(englishLang);
+  foundList.forEach(foundBlock => {
+    Object.keys(supportedLocales).forEach(locale => {
+      supportedLocales[locale].messages[foundBlock.id] = foundBlock[locale];
+    });
+  });
+
+  Object.keys(supportedLocales).forEach(locale => {
+    const units = supportedLocales[locale].messages;
+    const propertiesContent = Object.keys(units)
+      .map(id => `${id}=${units[id] ? units[id] : ""}`)
+      .join("\n");
+
+    // fs.writeFileSync(
+    //   `messages/${supportedLocales[locale].locale}/strings.properties`,
+    //   propertiesContent
+    // );
+  });
+  console.log("found: ", foundList.length);
+  console.log("notFound: ", notFoundList.length);
+  console.log("notFoundList: ", notFoundList);
 }
-generateTranslationProperties();
+
+function getlangFileAsJson(locale) {
+  function returnMessagesFromPropertiesFile(rawPropertiesString) {
+    const translationsContent = rawPropertiesString.split("\n");
+    const parsedTranslations = convertPropsToFlatJson(translationsContent);
+
+    return parsedTranslations;
+  }
+  const englishPropertiesRaw = fs.readFileSync(
+    `./messages/${locale}/strings.properties`,
+    { encoding: "utf-8" }
+  );
+  return returnMessagesFromPropertiesFile(englishPropertiesRaw);
+}
+
+main();
