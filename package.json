@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/g-loot/gll-play-localization/issues"
   },
-  "homepage": "https://github.com/g-loot/gll-play-localization#readme"
+  "homepage": "https://github.com/g-loot/gll-play-localization#readme",
+  "devDependencies": {
+    "propson": "0.0.3"
+  }
 }
