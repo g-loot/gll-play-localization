@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unresolved */
 import { convertPropsToFlatJson } from 'propson';
-// This is imported using Fusebox's raw plugin
+// This is imported using Fusebox's raw plugin, make sure to include .properties in your fusebox config
 import * as enMessages from './messages/en-US/strings.properties';
 import * as viMessages from './messages/vi/strings.properties';
 import * as jaMessages from './messages/ja/strings.properties';
