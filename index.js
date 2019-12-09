@@ -10,8 +10,7 @@ import * as thMessages from "./messages/th/strings.properties";
 import * as ruMessages from "./messages/ru/strings.properties";
 
 function returnMessagesFromPropertiesFile(rawPropertiesString) {
-  const translationsContent = rawPropertiesString.split("\n");
-  const parsedTranslations = propertiesToJSON(translationsContent);
+  const parsedTranslations = propertiesToJSON(rawPropertiesString);
 
   return parsedTranslations;
 }
