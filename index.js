@@ -24,42 +24,42 @@ export default [
     messages: returnMessagesFromPropertiesFile(enMessages),
   },
   {
-    name: 'Vietnamese',
+    name: 'Tiếng Việt',
     locale: 'vi',
     contentfulLocale: 'vi',
 
     messages: returnMessagesFromPropertiesFile(viMessages),
   },
   {
-    name: 'Japanese',
+    name: '日本語',
     locale: 'ja',
     contentfulLocale: 'ja-JP',
 
     messages: returnMessagesFromPropertiesFile(jaMessages),
   },
   {
-    name: 'Korean',
+    name: '한국어',
     locale: 'ko',
     contentfulLocale: 'ko-KR',
 
     messages: returnMessagesFromPropertiesFile(koMessages),
   },
   {
-    name: 'Turkish',
+    name: 'Türkçe',
     locale: 'tr',
     contentfulLocale: 'tr-TR',
 
     messages: returnMessagesFromPropertiesFile(trMessages),
   },
   {
-    name: 'Thailand',
+    name: 'ภาษาไทย',
     locale: 'th',
     contentfulLocale: 'th-TH',
 
     messages: returnMessagesFromPropertiesFile(thMessages),
   },
   {
-    name: 'Russian',
+    name: 'Русский язык',
     locale: 'ru',
     contentfulLocale: 'ru-RU',
 
