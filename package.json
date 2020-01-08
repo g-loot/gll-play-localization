@@ -1,6 +1,6 @@
 {
   "name": "gll-play-localization",
-  "version": "1.0.48",
+  "version": "1.0.49",
   "description": "Localization files for play.gll.gg",
   "main": "index.js",
   "scripts": {
