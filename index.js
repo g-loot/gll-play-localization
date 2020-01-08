@@ -59,7 +59,7 @@ export default [
     messages: returnMessagesFromPropertiesFile(thMessages),
   },
   {
-    name: 'Русский язык',
+    name: 'Русский',
     locale: 'ru',
     contentfulLocale: 'ru-RU',
 
