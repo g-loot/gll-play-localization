@@ -10,6 +10,7 @@ import * as thMessages from './messages/th/strings.properties';
 import * as ruMessages from './messages/ru/strings.properties';
 import * as ptBRMessages from './messages/pt-BR/strings.properties';
 import * as esMessages from './messages/es/strings.properties';
+import * as idMessages from './messages/id/strings.properties';
 
 function returnMessagesFromPropertiesFile(rawPropertiesString) {
   const parsedTranslations = propertiesToJSON(rawPropertiesString);
@@ -80,5 +81,12 @@ export default [
     contentfulLocale: 'es',
 
     messages: returnMessagesFromPropertiesFile(esMessages),
+  },
+  {
+    name: 'Español',
+    locale: 'id',
+    contentfulLocale: 'id',
+
+    messages: returnMessagesFromPropertiesFile(idMessages),
   },
 ];
