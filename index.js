@@ -1,19 +1,24 @@
 /* eslint-disable import/no-unresolved */
 import propertiesToJSON from 'properties-to-json';
 // This is imported using Fusebox's raw plugin, make sure to include .properties in your fusebox config
-import * as enMessages from './messages/en-US/strings.properties';
-import * as viMessages from './messages/vi/strings.properties';
-import * as jaMessages from './messages/ja/strings.properties';
-import * as koMessages from './messages/ko/strings.properties';
-import * as trMessages from './messages/tr/strings.properties';
-import * as thMessages from './messages/th/strings.properties';
-import * as ruMessages from './messages/ru/strings.properties';
-import * as ptBRMessages from './messages/pt-BR/strings.properties';
-import * as esMessages from './messages/es/strings.properties';
-import * as idMessages from './messages/id/strings.properties';
+import enMessages from './messages/en-US/strings.properties';
+import viMessages from './messages/vi/strings.properties';
+import jaMessages from './messages/ja/strings.properties';
+import koMessages from './messages/ko/strings.properties';
+import trMessages from './messages/tr/strings.properties';
+import thMessages from './messages/th/strings.properties';
+import ruMessages from './messages/ru/strings.properties';
+import ptBRMessages from './messages/pt-BR/strings.properties';
+import esMessages from './messages/es/strings.properties';
+import idMessages from './messages/id/strings.properties';
 
 function returnMessagesFromPropertiesFile(rawPropertiesString) {
-  const parsedTranslations = propertiesToJSON(rawPropertiesString);
+  let parsedTranslations;
+  if (typeof rawPropertiesString === 'string') {
+    parsedTranslations = propertiesToJSON(rawPropertiesString);
+  } else {
+    parsedTranslations = propertiesToJSON(rawPropertiesString.default);
+  }
 
   return parsedTranslations;
 }
