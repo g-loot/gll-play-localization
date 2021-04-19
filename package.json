@@ -1,6 +1,6 @@
 {
   "name": "@g-loot/gll-play-localization",
-  "version": "1.0.210",
+  "version": "1.1.450",
   "description": "Localization files for play.gll.gg",
   "main": "index.js",
   "scripts": {
